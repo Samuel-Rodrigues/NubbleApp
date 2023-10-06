@@ -5,7 +5,10 @@ import {Text} from './src/components/Text/Text';
 function App(): React.JSX.Element {
   return (
     <SafeAreaView>
-      <Text>Carlos Samuel Rodrigues</Text>
+      <Text preset="headingLarge">Carlos Samuel Rodrigues</Text>
+      <Text italic bold preset="headingLarge">
+        Carlos Samuel Rodrigues
+      </Text>
     </SafeAreaView>
   );
 }
