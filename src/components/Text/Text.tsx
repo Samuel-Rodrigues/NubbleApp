@@ -1,11 +1,13 @@
 import React from 'react';
-import {
-  Text as RNText,
-  TextProps as RNTextProps,
-  TextStyle,
-} from 'react-native';
+import {TextStyle} from 'react-native';
 
-interface TextProps extends RNTextProps {
+import {createText} from '@shopify/restyle';
+import {Theme} from '../../theme/theme';
+
+const SRText = createText<Theme>();
+type SRTextProps = React.ComponentProps<typeof SRText>;
+
+interface TextProps extends SRTextProps {
   preset?: TextVariants;
   bold?: boolean;
   italic?: boolean;
@@ -19,18 +21,33 @@ export function Text({
   bold,
   italic,
   semiBold,
-  ...rest
+  ...rNTextProps
 }: TextProps) {
-  const fontFamily = getFontFamily(bold, italic, semiBold);
+  const fontFamily = getFontFamily(preset, bold, italic, semiBold);
   return (
-    <RNText {...rest} style={[$fontSizes[preset], {fontFamily}, style]}>
+    <SRText
+      color="backgroundContrast"
+      {...rNTextProps}
+      style={[$fontSizes[preset], {fontFamily}, style]}>
       {children}
-    </RNText>
+    </SRText>
   );
 }
 
-function getFontFamily(bold?: boolean, italic?: boolean, semiBold?: boolean) {
-  //replace to switchCase
+function getFontFamily(
+  preset: TextVariants,
+  bold?: boolean,
+  italic?: boolean,
+  semiBold?: boolean,
+) {
+  if (
+    preset === 'headingLarge' ||
+    preset === 'headingMedium' ||
+    preset === 'headingSmall'
+  ) {
+    return italic ? $fontFamily.boldItalic : $fontFamily.bold;
+  }
+
   switch (true) {
     case bold && italic:
       return $fontFamily.boldItalic;
