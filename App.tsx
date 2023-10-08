@@ -4,6 +4,8 @@ import {SafeAreaView} from 'react-native';
 import {Button} from './src/components/Button/Button';
 import {Text} from './src/components/Text/Text';
 
+import {Icon} from './src/components/Icon/Icon';
+
 import {theme} from './src/theme/theme';
 
 function App(): React.JSX.Element {
@@ -23,6 +25,8 @@ function App(): React.JSX.Element {
         </Text>
         <Button title="Entrar" preset="primary" onPress={chamarFuncao} />
         <Button title="Entrar" preset="outline" />
+        <Icon name="eyeOff" color="error" />
+        <Icon name="eyeOff" color="error" />
       </SafeAreaView>
     </ThemeProvider>
   );
