@@ -1,34 +1,19 @@
 import {ThemeProvider} from '@shopify/restyle';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {Button} from './src/components/Button/Button';
-import {Text} from './src/components/Text/Text';
-
-import {Icon} from './src/components/Icon/Icon';
 
 import {theme} from './src/theme/theme';
 
-function App(): React.JSX.Element {
-  const chamarFuncao = () => {
-    let valor = 1;
-    const novoValor = valor + 1;
-    console.log(novoValor);
-  };
+import {LoginScreen} from './src/screens/auth/LoginScreen/LoginScreen';
+import {SignUpScreen} from './src/screens/auth/SignUpScreen/SignUpScreen';
 
-  chamarFuncao();
+function App(): React.JSX.Element {
   return (
-    <ThemeProvider theme={theme}>
-      <SafeAreaView>
-        <Text preset="headingMedium">Carlos Samuel Rodrigues</Text>
-        <Text italic bold preset="headingLarge">
-          Carlos Samuel Rodrigues
-        </Text>
-        <Button title="Entrar" preset="primary" onPress={chamarFuncao} />
-        <Button title="Entrar" preset="outline" />
-        <Icon name="eyeOff" color="error" />
-        <Icon name="eyeOff" color="error" />
-      </SafeAreaView>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <SignUpScreen />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }
 
