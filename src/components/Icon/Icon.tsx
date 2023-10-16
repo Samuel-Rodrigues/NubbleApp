@@ -28,6 +28,8 @@ import {ProfileIcon} from '../../assets/icons/ProfileIcon';
 import {SearchIcon} from '../../assets/icons/SearchIcon';
 import {SettingsIcon} from '../../assets/icons/SettingsIcon';
 import {TrashIcon} from '../../assets/icons/TrashIcon';
+import {CheckRoundIcon} from '../../assets/icons/CheckRoundIcon';
+import {MessageRoundIcon} from '../../assets/icons/MessageRoundIcon';
 
 import {useAppTheme} from '../../hooks/useAppTheme';
 import {ThemeColors} from '../../theme/theme';
@@ -37,7 +39,7 @@ export interface IconBase {
   color?: string;
 }
 
-interface Props {
+export interface IconProps {
   name: IconName;
   color?: ThemeColors;
   size?: number;
@@ -49,7 +51,7 @@ export function Icon({
   color = 'backgroundContrast',
   size = 20,
   onPress,
-}: Props) {
+}: IconProps) {
   const SVGIcon = iconRegistry[name];
   const {colors} = useAppTheme();
 
@@ -93,6 +95,8 @@ const iconRegistry = {
   search: SearchIcon,
   settings: SettingsIcon,
   trash: TrashIcon,
+  checkRound: CheckRoundIcon,
+  messageRound: MessageRoundIcon,
 };
 
 type IconName = keyof typeof iconRegistry;
