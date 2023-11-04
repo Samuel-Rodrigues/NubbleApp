@@ -1,4 +1,9 @@
 import React from 'react';
+
+import {zodResolver} from '@hookform/resolvers/zod';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useForm, Controller} from 'react-hook-form';
+
 import {
   Button,
   PasswordInput,
@@ -7,10 +12,7 @@ import {
   TextInput,
   FormTextInput,
 } from '@components';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '@routes';
-import {useForm, Controller} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
 
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 

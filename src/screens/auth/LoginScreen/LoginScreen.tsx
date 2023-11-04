@@ -1,10 +1,12 @@
 import React from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
 import {zodResolver} from '@hookform/resolvers/zod';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useForm, Controller} from 'react-hook-form';
+
 import {Text, FormTextInput, PasswordInput, Button, Screen} from '@components';
 import {RootStackParamList} from '@routes';
 
-import {useForm, Controller} from 'react-hook-form';
 import {LoginSchema, loginSchema} from './loginSchema';
 
 type ScreenProps = NativeStackScreenProps<RootStackParamList, 'LoginScreen'>;
