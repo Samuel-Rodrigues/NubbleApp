@@ -1,6 +1,6 @@
 {
   "cSpell.words": ["Pressable", "Rodrigues"],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   }
 }

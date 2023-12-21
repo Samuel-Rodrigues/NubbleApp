@@ -10,6 +10,7 @@ module.exports = {
           '@hooks': './src/hooks',
           '@screens': './src/screens',
           '@routes': './src/routes',
+          '@theme': './src/theme',
         },
       },
     ],
