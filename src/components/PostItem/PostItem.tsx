@@ -24,7 +24,12 @@ export function PostItem({post}: PostItemProps) {
         commentCount={commentCount}
         favoriteCount={favoriteCount}
       />
-      <PostBottom author={author} commentCount={commentCount} text={text} />
+      <PostBottom
+        author={author}
+        commentCount={commentCount}
+        text={text}
+        id={post.id}
+      />
     </Box>
   );
 }
