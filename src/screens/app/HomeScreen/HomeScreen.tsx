@@ -11,12 +11,11 @@ import {Post, usePostList} from '@domain';
 import {useScrollToTop} from '@react-navigation/native';
 
 import {Screen, PostItem} from '@components';
-import {AppTabScreenProps} from '@routes';
 
 import {HomeEmpty} from './components/HomeEmpty';
 import {HomeHeader} from './components/HomeHeader';
 
-export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
+export function HomeScreen() {
   const {
     list: postList,
     error,
@@ -29,10 +28,6 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
 
   useScrollToTop(flatListRef);
 
-  function navigateToSettings() {
-    navigation.navigate('SettingsScreen');
-  }
-
   function renderItem({item}: ListRenderItemInfo<Post>) {
     return <PostItem post={item} />;
   }
@@ -41,6 +36,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
     <Screen style={screen} flex={1}>
       <FlatList
         ref={flatListRef}
+        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{flex: postList.length === 0 ? 1 : undefined}}
         ListEmptyComponent={
           <HomeEmpty refetch={refresh} error={error} loading={loading} />

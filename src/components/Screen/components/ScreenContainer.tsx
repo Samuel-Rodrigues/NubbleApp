@@ -13,7 +13,7 @@ export function ScrollViewContainer({
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled" // https://reactnative.dev/docs/scrollview#keyboardshouldpersisttaps
-      style={{backgroundColor, flex: 1}}>
+      style={{backgroundColor}}>
       {children}
     </ScrollView>
   );
@@ -23,5 +23,5 @@ export function ViewContainer({
   children,
   backgroundColor,
 }: ScreenContainerProps) {
-  return <View style={{backgroundColor, flex: 1}}>{children}</View>;
+  return <View style={{backgroundColor}}>{children}</View>;
 }
