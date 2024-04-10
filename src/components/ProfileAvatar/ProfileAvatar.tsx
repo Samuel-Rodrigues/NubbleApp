@@ -8,7 +8,6 @@ interface ProfileAvatarProps {
   /** @default 14 */
   borderRadius?: number;
 }
-
 export function ProfileAvatar({
   imageURL,
   size = 32,
@@ -17,7 +16,7 @@ export function ProfileAvatar({
   return (
     <Image
       source={{uri: imageURL}}
-      style={{width: size, height: size, borderRadius: borderRadius}}
+      style={{width: size, height: size, borderRadius}}
     />
   );
 }

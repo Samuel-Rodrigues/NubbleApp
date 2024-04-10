@@ -14,6 +14,7 @@ interface PostItemProps {
 }
 
 export function PostItem({post}: PostItemProps) {
+  console.log(post);
   const {commentCount, favoriteCount, reactionCount, author, text} = post;
   return (
     <Box marginBottom="s24" paddingHorizontal="s24">

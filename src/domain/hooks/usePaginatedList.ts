@@ -23,6 +23,7 @@ export function usePaginatedList<Data>(
         setHasNextPage(false);
       }
     } catch (er) {
+      console.log('fetchInitialData', er);
       setError(true);
     } finally {
       setLoading(false);
@@ -59,6 +60,7 @@ export function usePaginatedList<Data>(
     error,
     loading,
     refresh: fetchInitialData,
+    hasNextPage,
     fetchNextPage,
   };
 }
