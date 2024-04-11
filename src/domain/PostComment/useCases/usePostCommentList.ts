@@ -1,4 +1,5 @@
-import {usePaginatedList} from '../../hooks/usePaginatedList';
+import {usePaginatedList} from '@infra';
+
 import {postCommentService} from '../postCommentService';
 
 export function usePostCommentList(postId: number) {

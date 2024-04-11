@@ -3,18 +3,20 @@ import React from 'react';
 import {Post} from '@domain';
 import {useNavigation} from '@react-navigation/native';
 
-import {Box} from '../../Box/Box';
-import {Text} from '../../Text/Text';
+import {Box, Text} from '@components';
 
 type Props = Pick<Post, 'author' | 'text' | 'commentCount' | 'id'>;
 
-export function PostBottom({author, commentCount, text, id}: Props) {
+export function PostBottom({author, text, commentCount, id}: Props) {
   const navigation = useNavigation();
 
-  let commentText = getCommentText(commentCount);
+  const commentText = getCommentText(commentCount);
 
   function navigateToPostCommentScreen() {
-    navigation.navigate('PostCommentScreen', {postId: id});
+    navigation.navigate('PostCommentScreen', {
+      postId: id,
+      postAuthorId: author.id,
+    });
   }
 
   return (
@@ -39,9 +41,11 @@ export function PostBottom({author, commentCount, text, id}: Props) {
   );
 }
 
-function getCommentText(commentCount: number) {
+function getCommentText(commentCount: number): string | null {
   if (commentCount === 0) {
     return null;
+  } else if (commentCount === 1) {
+    return 'ver comentário';
   } else {
     return `ver ${commentCount} comentários`;
   }

@@ -6,22 +6,27 @@ import {
   TextStyle,
 } from 'react-native';
 
-import {useAppTheme} from '../../hooks/useAppTheme';
+import {useAppTheme} from '@hooks';
+import {colors} from '@theme';
+
 import {Box, BoxProps} from '../Box/Box';
-import {Text, $fontFamily, $fontSizes} from '../Text/Text';
+import {$fontFamily, $fontSizes, Text} from '../Text/Text';
 
 export interface TextInputProps extends RNTextInputProps {
-  label: string;
-  errorMessages?: String;
+  label?: string;
+  errorMessage?: string;
   RightComponent?: React.ReactElement;
+  LeftComponent?: React.ReactElement;
   boxProps?: BoxProps;
+  containerProps?: BoxProps;
 }
-
 export function TextInput({
   label,
-  errorMessages,
+  errorMessage,
   RightComponent,
+  LeftComponent,
   boxProps,
+  containerProps,
   ...rnTextInputProps
 }: TextInputProps) {
   const {colors} = useAppTheme();
@@ -29,39 +34,48 @@ export function TextInput({
 
   const $textInputContainer: BoxProps = {
     flexDirection: 'row',
-    borderWidth: errorMessages ? 2 : 1,
-    borderColor: errorMessages ? 'error' : 'gray4',
-    borderRadius: 's12',
+    borderWidth: errorMessage ? 2 : 1,
+    borderColor: errorMessage ? 'error' : 'gray4',
     padding: 's16',
+    borderRadius: 's12',
   };
 
   function focusInput() {
     inputRef.current?.focus();
   }
-
   return (
-    <Box {...boxProps}>
+    <Box flexGrow={1} flexShrink={1} {...boxProps}>
       <Pressable onPress={focusInput}>
-        <Text preset="paragraphMedium" mb="s4">
-          {label}
-        </Text>
-        <Box {...$textInputContainer}>
+        {label && (
+          <Text preset="paragraphMedium" marginBottom="s4">
+            {label}
+          </Text>
+        )}
+        <Box
+          {...$textInputContainer}
+          {...containerProps}
+          backgroundColor="grayWhite">
+          {LeftComponent && (
+            <Box justifyContent="center" mr="s16">
+              {LeftComponent}
+            </Box>
+          )}
           <RNTextInput
             autoCapitalize="none"
             ref={inputRef}
-            placeholderTextColor={colors.gray3}
-            style={$textStyle}
+            placeholderTextColor={colors.gray2}
+            style={$textInputStyle}
             {...rnTextInputProps}
           />
           {RightComponent && (
-            <Box ml="s16" justifyContent="center">
+            <Box justifyContent="center" ml="s16">
               {RightComponent}
             </Box>
           )}
         </Box>
-        {errorMessages && (
-          <Text preset="paragraphMedium" bold color="error">
-            {errorMessages}
+        {errorMessage && (
+          <Text color="error" preset="paragraphSmall" bold>
+            {errorMessage}
           </Text>
         )}
       </Pressable>
@@ -69,10 +83,11 @@ export function TextInput({
   );
 }
 
-const $textStyle: TextStyle = {
+export const $textInputStyle: TextStyle = {
   padding: 0,
   flexGrow: 1,
-  flexShrink: 1, // Imprede que o texto empurre o ícone para fora do container
+  flexShrink: 1,
+  color: colors.palette.grayBlack,
   fontFamily: $fontFamily.regular,
   ...$fontSizes.paragraphMedium,
 };

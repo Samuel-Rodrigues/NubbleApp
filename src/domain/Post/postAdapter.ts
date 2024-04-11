@@ -1,21 +1,22 @@
-import {PostAPI, Post} from './postTypes';
+import {Post, PostAPI} from './postTypes';
 
 /**
  * @description Adapta o PostAPI para o modelo de Post
  */
-function toPost(postApi: PostAPI): Post {
+function toPost(postAPI: PostAPI): Post {
   return {
-    id: postApi.id,
-    text: postApi.text,
+    id: postAPI.id,
+    text: postAPI.text,
     author: {
-      profileURL: postApi.user.profile_url,
-      name: postApi.user.full_name,
-      userName: postApi.user.username,
+      profileURL: postAPI.user.profile_url,
+      name: postAPI.user.full_name,
+      userName: postAPI.user.username,
+      id: postAPI.user.id,
     },
-    imageURL: postApi.image_url,
-    reactionCount: parseInt(postApi.meta.like_count, 10),
-    commentCount: parseInt(postApi.meta.comments_count, 10),
-    favoriteCount: parseInt(postApi.meta.favorite_count, 10),
+    imageURL: postAPI.image_url,
+    reactionCount: parseInt(postAPI.meta.like_count, 10),
+    commentCount: parseInt(postAPI.meta.comments_count, 10),
+    favoriteCount: parseInt(postAPI.meta.favorite_count, 10),
   };
 }
 
