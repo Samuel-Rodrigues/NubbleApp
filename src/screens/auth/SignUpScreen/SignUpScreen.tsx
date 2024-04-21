@@ -56,7 +56,7 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
         name="email"
         render={({field: {value, onChange}, fieldState: {error}}) => (
           <TextInput
-            errorMessages={error?.message}
+            errorMessage={error?.message}
             label="E-mail"
             placeholder="Digite seu e-mail"
             boxProps={{mb: 's20'}}
@@ -74,7 +74,7 @@ export function SignUpScreen({}: AuthScreenProps<'SignUpScreen'>) {
             label="Senha"
             value={value}
             onChangeText={onChange}
-            errorMessages={error?.message}
+            errorMessage={error?.message}
             placeholder="Digite sua senha"
             boxProps={{mb: 's48'}}
           />

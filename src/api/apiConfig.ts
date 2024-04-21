@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://192.168.5.139:3333/',
+  // baseURL: 'http://192.168.5.139:3333/',
+  baseURL: 'http://localhost:3333',
   headers: {
     Authorization:
-      'Bearer Mw.GX8NbTzx2MsA563tXpUpdy6kNuTxfe1XzsJB-VqGFeyw5AE5TXRwhtN1xAs7',
+      'Bearer Mg.LbhTKdHcTmx-6STtqBJhzFv76hrb9YQIC5wj7_Ofxte0MERXZIFi8MP02zW2',
   },
 });

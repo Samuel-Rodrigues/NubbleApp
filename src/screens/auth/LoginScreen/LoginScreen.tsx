@@ -50,7 +50,7 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
             label="Senha"
             value={value}
             onChangeText={onChange}
-            errorMessages={error?.message}
+            errorMessage={error?.message}
             placeholder="Digite sua senha"
             boxProps={{mb: 's10'}}
           />

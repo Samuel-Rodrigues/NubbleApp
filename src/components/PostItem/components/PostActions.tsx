@@ -2,48 +2,54 @@ import React from 'react';
 
 import {Post} from '@domain';
 
-import {Box, TouchableOpacityBox} from '../../Box/Box';
-import {Icon, IconProps} from '../../Icon/Icon';
-import {Text} from '../../Text/Text';
+import {Box, TouchableOpacityBox, Icon, IconProps, Text} from '@components';
 
 type Props = Pick<Post, 'reactionCount' | 'commentCount' | 'favoriteCount'>;
 
-export function PostIActions({
+export function PostActions({
+  reactionCount,
   commentCount,
   favoriteCount,
-  reactionCount,
 }: Props) {
   function likePost() {
-    console.log('like post');
+    //TODO: Implement like post
   }
 
   function navigateToComments() {
-    console.log('navigate to comments');
+    //TODO: Implement navigate to comments
   }
 
   function favoritePost() {
-    console.log('favorite post');
+    // TODO: Implement favorite post
   }
-
   return (
     <Box flexDirection="row" mt="s16">
       <Item
         marked
-        icon={{default: 'heart', marked: 'heartFill'}}
         onPress={likePost}
         text={reactionCount}
+        icon={{
+          default: 'heart',
+          marked: 'heartFill',
+        }}
       />
       <Item
         marked={false}
-        icon={{default: 'comment', marked: 'comment'}}
         onPress={navigateToComments}
         text={commentCount}
+        icon={{
+          default: 'comment',
+          marked: 'comment',
+        }}
       />
       <Item
         marked={false}
-        icon={{default: 'bookmark', marked: 'bookmarkFill'}}
         onPress={favoritePost}
         text={favoriteCount}
+        icon={{
+          default: 'bookmark',
+          marked: 'bookmarkFill',
+        }}
       />
     </Box>
   );
@@ -58,21 +64,19 @@ interface ItemProps {
     marked: IconProps['name'];
   };
 }
-
-function Item({icon, onPress, text, marked}: ItemProps) {
+function Item({onPress, icon, marked, text}: ItemProps) {
   return (
     <TouchableOpacityBox
-      mr="s24"
-      alignItems="center"
       flexDirection="row"
+      alignItems="center"
+      mr="s24"
       onPress={onPress}>
       <Icon
-        color={marked ? 'marker' : undefined}
+        color={marked ? 'market' : undefined}
         name={marked ? icon.marked : icon.default}
-        size={24}
       />
       {text > 0 && (
-        <Text bold ml="s4" preset="paragraphSmall">
+        <Text preset="paragraphSmall" bold ml="s4">
           {text}
         </Text>
       )}

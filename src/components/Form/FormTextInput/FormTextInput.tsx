@@ -17,7 +17,7 @@ export function FormTextInput<FormType extends FieldValues>({
       rules={rules}
       render={({field: {value, onChange}, fieldState: {error}}) => (
         <TextInput
-          errorMessages={error?.message}
+          errorMessage={error?.message}
           placeholder="@"
           boxProps={{mb: 's20'}}
           value={value}

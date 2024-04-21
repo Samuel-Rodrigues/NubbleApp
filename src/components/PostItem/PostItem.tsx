@@ -4,7 +4,7 @@ import {Post} from '@domain';
 
 import {Box} from '../Box/Box';
 
-import {PostIActions} from './components/PostActions';
+import {PostActions} from './components/PostActions';
 import {PostBottom} from './components/PostBottom';
 import {PostHeader} from './components/PostHeader';
 import {PostImage} from './components/PostImage';
@@ -19,7 +19,7 @@ export function PostItem({post}: PostItemProps) {
     <Box marginBottom="s24" paddingHorizontal="s24">
       <PostHeader author={post.author} />
       <PostImage imageURL={post.imageURL} />
-      <PostIActions
+      <PostActions
         reactionCount={reactionCount}
         commentCount={commentCount}
         favoriteCount={favoriteCount}

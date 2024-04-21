@@ -17,6 +17,7 @@ import {CheckIcon} from '../../assets/icons/CheckIcon';
 import {CheckRoundIcon} from '../../assets/icons/CheckRoundIcon';
 import {ChevronRightIcon} from '../../assets/icons/ChevronRightIcon';
 import {CommentIcon} from '../../assets/icons/CommentIcon';
+import {ErrorRoundIcon} from '../../assets/icons/ErrorRoundIcon';
 import {EyeOffIcon} from '../../assets/icons/EyeOffIcon';
 import {EyeOnIcon} from '../../assets/icons/EyeOnIcon';
 import {FlashOffIcon} from '../../assets/icons/FlashOffIcon';
@@ -37,34 +38,41 @@ import {TrashIcon} from '../../assets/icons/TrashIcon';
 export interface IconBase {
   size?: number;
   color?: string;
+  fillColor?: string;
 }
 
 export interface IconProps {
   name: IconName;
   color?: ThemeColors;
+  fillColor?: ThemeColors;
   size?: number;
   onPress?: () => void;
 }
-
 export function Icon({
   name,
   color = 'backgroundContrast',
-  size = 20,
+  fillColor = 'background',
+  size,
   onPress,
 }: IconProps) {
-  const SVGIcon = iconRegistry[name];
   const {colors} = useAppTheme();
+  const SVGIcon = iconRegistry[name];
+
+  const iconProps: React.ComponentProps<typeof SVGIcon> = {
+    size,
+    color: colors[color],
+    fillColor: colors[fillColor],
+  };
 
   if (onPress) {
     return (
-      <Pressable hitSlop={10} onPress={onPress}>
-        {/* hitSlop=>  https://reactnative.dev/docs/pressable#hitslop */}
-        <SVGIcon color={colors[color]} size={size} />
+      <Pressable testID={name} hitSlop={10} onPress={onPress}>
+        <SVGIcon {...iconProps} />
       </Pressable>
     );
   }
 
-  return <SVGIcon color={colors[color]} size={size} />;
+  return <SVGIcon {...iconProps} />;
 }
 
 const iconRegistry = {
@@ -78,6 +86,8 @@ const iconRegistry = {
   chat: ChatIcon,
   chatOn: ChatOnIcon,
   check: CheckIcon,
+  checkRound: CheckRoundIcon,
+  errorRound: ErrorRoundIcon,
   comment: CommentIcon,
   chevronRight: ChevronRightIcon,
   eyeOn: EyeOnIcon,
@@ -89,14 +99,15 @@ const iconRegistry = {
   home: HomeIcon,
   homeFill: HomeFillIcon,
   message: MessageIcon,
+  messageRound: MessageRoundIcon,
   newPost: NewPostIcon,
   profile: ProfileIcon,
   profileFill: ProfileFillIcon,
   search: SearchIcon,
   settings: SettingsIcon,
   trash: TrashIcon,
-  checkRound: CheckRoundIcon,
-  messageRound: MessageRoundIcon,
 };
 
-type IconName = keyof typeof iconRegistry;
+type IconType = typeof iconRegistry;
+
+type IconName = keyof IconType;
